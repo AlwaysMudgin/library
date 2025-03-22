@@ -1,0 +1,104 @@
+@font-face {
+    font-family: Roboto-medium;
+    src: url(Roboto-Medium.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto-medium;
+    --header-icon-width: 30px;
+    --header-icon-height: 30px;
+    --card-header-gap: 10px;
+    --title-font-size: 18px;
+    --author-font-size: 14px;
+    --author-font-color: rgb(138, 138, 138);
+    --author-font-style: oblique;
+    --pages-font-size: 10px;
+    --read-font-color: rgb(90, 200, 83);
+    --unread-font-color: rgb(254, 78, 3);
+
+}
+
+body {
+    background-color: bisque;
+}
+
+.page-container {
+    padding: 20px;
+    display: grid;
+    gap: 15px;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: auto 100px;
+    gap: 50px;
+    justify-content: start;
+}
+
+.page-heading {
+    font-size: 32px;
+}
+
+#add-book {
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: skyblue;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    gap: 15px;
+    justify-content: start;
+}
+
+.card {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: ivory;
+    box-shadow: 3px 3px 3px rgb(116, 116, 116);
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.card-header {
+    display: grid;
+    grid-template-columns: var(--header-icon-width) 1fr;
+    column-gap: var(--card-header-gap);
+    align-items: center;
+}
+
+.header-icon {
+    height: var(--header-icon-height);
+    width: var(--header-icon-width);
+}
+
+.title {
+    font-size: var(--title-font-size);
+}
+
+.author {
+    font-size: var(--author-font-size);
+    font-style: var(--author-font-style);
+    color: var(--author-font-color);
+}
+
+.pages {
+    font-size: var(--pages-font-size);
+}
+
+.status {
+    font-size: var(--author-font-size);
+    justify-self: end;
+}
+
+#read {
+    color: var(--read-font-color);
+}
+
+#unread {
+    color: var(--unread-font-color);
+}
