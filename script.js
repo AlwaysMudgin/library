@@ -1,11 +1,38 @@
 const myLibrary = [];
+const container = document.querySelector(".cards-container");
 
-const addBookButton = document.querySelector("#add-book");
-const bookDialog = document.querySelector("#book-dialog");
-addBookButton.addEventListener("click", () => {
-
+// New book modal form
+const newBookButton = document.querySelector("#add-book");
+const newBookDialog = document.querySelector("#book-dialog");
+newBookButton.addEventListener("click", () => {
+    newBookDialog.showModal();
 })
 
+const newBookBackButton = document.querySelector("#new-book-back");
+newBookBackButton.addEventListener("click", () => {
+    newBookDialog.close();
+})
+
+const newBookForm = document.querySelector("#new-book-form");
+newBookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newBookTitle = document.querySelector("#new-book-title");
+    const newBookAuthor = document.querySelector("#new-book-author");
+    const newBookPages = document.querySelector("#new-book-pages");
+    const newBookStatus = document.querySelector("#new-book-status");
+
+    let title = newBookTitle.value;
+    let author = newBookAuthor.value;
+    let pages = newBookPages.value;
+    let status = newBookStatus.value;
+
+    addBookToLibrary(title, author, pages, status);
+    newBookDialog.close();
+    displayAllBooks();
+})
+
+// Book object
 function Book(title, author, pages, status) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor")
@@ -20,13 +47,15 @@ function Book(title, author, pages, status) {
     }
 }
 
+// New book function
 function addBookToLibrary(title, author, pages, status) {
     let book = new Book(title, author, pages, status);
     myLibrary.push(book);
 }
 
+// Display books function
 function displayAllBooks() {
-    const container = document.querySelector(".cards-container");
+    container.replaceChildren();
     for (let i = 0; i < myLibrary.length; i++) {
         const card = document.createElement("div");
         card.className = "card";

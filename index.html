@@ -5,16 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
 </head>
 <body>
     <div class="page-container">
         <div class="header">
             <p class="page-heading">My Library</p>
-            <button id="add-book">Add Book</button>
+            <button type="button" id="add-book">Add Book</button>
             <dialog id="book-dialog">
-                <form action="submit">
+                <form action="" id="new-book-form">
+                    <legend>Enter Book Information</legend>
                     
+                    <label for="new-book-title">Title:</label>
+                    <input type="text" id="new-book-title" name="new-book-title">
+
+                    <label for="new-book-author">Author:</label>
+                    <input type="text" id="new-book-author" name="new-book-author">
+
+                    <label for="new-book-pages">Pages:</label>
+                    <input type="number" id="new-book-pages" name="new-book-pages">
+
+                    <label for="new-book-status">Status</label>
+                    <select name="new-book-status" id="new-book-status">
+                        <option value="read">Read</option>
+                        <option value="unread">Unread</option>
+                    </select>
+
+                    <button type="submit" id="new-book-submit">Submit</button>
+                    <button type="button" id="new-book-back">Back</button>
                 </form>
             </dialog>
         </div>
@@ -23,4 +40,5 @@
         </div>
     </div>
 </body>
+<script src="script.js"></script>
 </html>
