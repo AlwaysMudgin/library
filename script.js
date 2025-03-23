@@ -57,6 +57,8 @@ function addBookToLibrary(title, author, pages, status) {
 function displayAllBooks() {
     container.replaceChildren();
     for (let i = 0; i < myLibrary.length; i++) {
+        let bookID = myLibrary[i].id;
+        
         const card = document.createElement("div");
         card.className = "card";
 
@@ -72,8 +74,20 @@ function displayAllBooks() {
         title.innerText = myLibrary[i].title;
         title.className = "title";
 
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "close-circle-outline.svg";
+        deleteIcon.alt = "delete icon";
+        deleteIcon.className = "delete-icon";
+        deleteIcon.setAttribute("data-id", bookID);
+        deleteIcon.addEventListener("click", () => {
+            let index = myLibrary.findIndex(object => object.id === bookID);
+            myLibrary.splice(index, 1);
+            displayAllBooks();
+        })
+
         header.appendChild(headerIcon);
         header.appendChild(title);
+        header.appendChild(deleteIcon);
         card.appendChild(header);
 
         const author = document.createElement("p");
@@ -86,23 +100,9 @@ function displayAllBooks() {
         pages.className = "pages";
         card.appendChild(pages);
 
-        const footer = document.createElement("div");
-        footer.className = "card-footer"
-
-        let deleteID = myLibrary[i].id;
-        const deleteButton = document.createElement("button");
-        deleteButton.innerText = "Delete";
-        deleteButton.className = "delete-book";
-        deleteButton.setAttribute("id", deleteID);
-        deleteButton.addEventListener("click", () => {
-            let index = myLibrary.findIndex(object => object.id === deleteID);
-            myLibrary.splice(index, 1);
-            displayAllBooks();
-        })
-        
-
         const status = document.createElement("p");
-        status.className = "status"
+        status.className = "status";
+        status.setAttribute("data-id", bookID)
         if (myLibrary[i].status === "read") {
             status.innerText = "Read";
             status.id = "read"
@@ -110,10 +110,17 @@ function displayAllBooks() {
             status.innerText = "Unread";
             status.id = "unread"
         }
+        status.addEventListener("click", () => {
+            let index = myLibrary.findIndex(object => object.id === bookID);
+            if (myLibrary[index].status === "read") {
+                myLibrary[index].status = "unread";
+            } else {
+                myLibrary[index].status = "read";
+            }
+            displayAllBooks();
+        })
 
-        footer.appendChild(deleteButton);
-        footer.appendChild(status);
-        card.appendChild(footer);
+        card.appendChild(status);
         container.appendChild(card);
     }
 }

@@ -78,7 +78,7 @@ body {
 }
 
 .card {
-    width: 220px;
+    width: 300px;
     border-radius: 8px;
     padding: 10px;
     background-color: ivory;
@@ -89,7 +89,7 @@ body {
 
 .card-header {
     display: grid;
-    grid-template-columns: var(--header-icon-width) 1fr;
+    grid-template-columns: var(--header-icon-width) 1fr 18px;
     column-gap: var(--card-header-gap);
     align-items: center;
 }
@@ -103,6 +103,16 @@ body {
     font-size: var(--title-font-size);
 }
 
+.delete-icon {
+    width: 18px;
+    height: 18px;
+    align-self: start;
+}
+
+.delete-icon:hover {
+    cursor: pointer;
+}
+
 .author {
     font-size: var(--author-font-size);
     font-style: var(--author-font-style);
@@ -113,19 +123,13 @@ body {
     font-size: var(--pages-font-size);
 }
 
-.card-footer {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-}
-
-.delete-book {
-    font-size: var(--author-font-size);
-}
-
 .status {
     font-size: var(--author-font-size);
     justify-self: end;
+}
+
+.status:hover {
+    cursor: pointer;
 }
 
 #read {
