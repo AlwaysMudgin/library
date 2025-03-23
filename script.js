@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const container = document.querySelector(".cards-container");
 
 // New book modal form
@@ -63,16 +63,16 @@ function displayAllBooks() {
         const header = document.createElement("div");
         header.className = "card-header";
 
-        const icon = document.createElement("img");
-        icon.src = "book-open-blank-variant-outline.svg"
-        icon.alt = "book icon"
-        icon.className = "header-icon"
+        const headerIcon = document.createElement("img");
+        headerIcon.src = "book-open-blank-variant-outline.svg"
+        headerIcon.alt = "book icon"
+        headerIcon.className = "header-icon"
 
         const title = document.createElement("p");
         title.innerText = myLibrary[i].title;
         title.className = "title";
 
-        header.appendChild(icon);
+        header.appendChild(headerIcon);
         header.appendChild(title);
         card.appendChild(header);
 
@@ -86,6 +86,21 @@ function displayAllBooks() {
         pages.className = "pages";
         card.appendChild(pages);
 
+        const footer = document.createElement("div");
+        footer.className = "card-footer"
+
+        let deleteID = myLibrary[i].id;
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.className = "delete-book";
+        deleteButton.setAttribute("id", deleteID);
+        deleteButton.addEventListener("click", () => {
+            let index = myLibrary.findIndex(object => object.id === deleteID);
+            myLibrary.splice(index, 1);
+            displayAllBooks();
+        })
+        
+
         const status = document.createElement("p");
         status.className = "status"
         if (myLibrary[i].status === "read") {
@@ -95,7 +110,10 @@ function displayAllBooks() {
             status.innerText = "Unread";
             status.id = "unread"
         }
-        card.appendChild(status);
+
+        footer.appendChild(deleteButton);
+        footer.appendChild(status);
+        card.appendChild(footer);
         container.appendChild(card);
     }
 }

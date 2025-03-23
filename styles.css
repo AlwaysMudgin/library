@@ -39,6 +39,7 @@ body {
 
 .page-heading {
     font-size: 32px;
+    position: relative;
 }
 
 #add-book {
@@ -53,6 +54,11 @@ body {
 
 #add-book:active {
     background-color: rgb(95, 165, 192);
+}
+
+#book-dialog {
+    position: absolute;
+    margin: auto;
 }
 
 #book-dialog > form {
@@ -72,6 +78,7 @@ body {
 }
 
 .card {
+    width: 220px;
     border-radius: 8px;
     padding: 10px;
     background-color: ivory;
@@ -104,6 +111,16 @@ body {
 
 .pages {
     font-size: var(--pages-font-size);
+}
+
+.card-footer {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.delete-book {
+    font-size: var(--author-font-size);
 }
 
 .status {
