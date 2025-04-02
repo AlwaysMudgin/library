@@ -32,20 +32,17 @@ newBookForm.addEventListener("submit", (e) => {
     displayAllBooks();
 })
 
-// Book object
-function Book(title, author, pages, status) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor")
-    }
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-    this.id = crypto.randomUUID();
-    this.info = function() {
-        return(`${this.title} by ${this.author}, ${pages} pages, ${status}`)
+// Book object (class)
+class Book {
+    constructor(title, author, pages, status) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+        this.id = crypto.randomUUID();
     }
 }
+
 
 // New book function
 function addBookToLibrary(title, author, pages, status) {
